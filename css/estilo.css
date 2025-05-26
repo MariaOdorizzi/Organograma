@@ -1,0 +1,38 @@
+.titulo-principal {
+    display: flex;
+    position: relative;
+    margin-top: 130px;
+    margin-left: 150px;
+}
+
+.paragrafos {
+    text-align: justify;
+    display: flex;
+    position: center;
+    width: 1500px;
+    flex-wrap: wrap;
+    margin-left: 120px;
+    margin-top: 20px;
+    font-size: 14px;
+    padding: 30px;
+}
+
+.image-of-complex {
+    position: absolute;
+    margin-left: 450px;
+}
+
+.sub-coordenadores {
+    display: none; /* Ensure the sub-coordenadores are hidden initially */
+}
+
+.image-of-complex img {
+    width: 800px;
+    height: auto;
+}
+
+
+.paragrafos h2 {
+    font-size: 18px;
+}
+

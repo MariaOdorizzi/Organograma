@@ -1,0 +1,756 @@
+/* Estilos gerais */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body .container {
+    overflow: visible;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    height: 100vh;
+    margin: 0;
+}
+
+#setor-filter {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+#reload-btn {
+    background: transparent;
+    position: absolute;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 600px;
+    margin-top: -60px;
+    transition: color 0.3s ease;
+}
+
+#reload-btn:hover {
+    color: #007bff; /* Altere para a cor desejada */
+}
+
+.icon {
+    display: flex;
+    font-size: 25px; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
+.container {
+    transform: scale(0.68); /* Reduz o zoom para 80% */
+    transform-origin: 0 0; /* Define o ponto de origem da transformação no canto superior esquerdo */
+    display: flex;
+    align-items: flex-start;
+    position: center;
+    width: 100%;
+    margin-left: 5px;
+    min-width: 2000px;
+    height: auto;
+}
+
+.tree #gestao-link {
+    position: relative;
+}
+
+/* Inicialmente oculta setores e funcionários */
+.funcionarios, .coordenador-container {
+    display: none; /* Oculta inicialmente */
+}
+
+/* Quando visível, exibe como flex */
+.funcionarios, .coordenador-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Setores que estão visíveis */
+.node-link.setor.active + .funcionarios {
+    display: flex;
+}
+
+.node-link.coordenador.active + .funcionarios {
+    display: flex;
+}
+
+.simplifica-logo {
+    position: absolute;
+    display: flex;
+    align-items: left;
+}
+
+.simplifica-logo img {
+    width: 100px;
+    height: auto;
+    margin-left: 20px;
+    margin-top: -15px;
+}
+
+
+.tree {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.tree ul {
+    padding-top: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    white-space: nowrap;
+    justify-content: center;
+}
+
+.tree li {
+    display: inline-block;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding-top: 8px;
+    padding-right: 5px;
+    padding-left: 10px;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.tree li::before,
+.tree li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    border-top: 2px solid #ccc;
+    width: 50%;
+    height: 100px;
+    z-index: -1;
+}
+
+.tree li::before {
+    right: 50%;
+    border-right: 1px solid #ccc;
+    border-radius: 0 5px 0 0;
+}
+
+.tree li::after {
+    left: 50%;
+    border-left: 1px solid #ccc;
+    border-radius: 5px 0 0 0;
+}
+
+.tree li:only-child::before,
+.tree li:only-child::after {
+    display: none;
+}
+
+.tree li:first-child::before {
+    border: 0;
+}
+
+.tree li:last-child::after {
+    border: 0;
+}
+
+.tree ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 2px solid #ccc;
+    width: 0;
+    height: 16px;
+    z-index: -1;
+}
+
+.filtro-botoes button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.botao-imprimir {
+    position: relative;
+    display: absolute;
+    margin-left: 465px;
+    margin-top: -42px;
+}
+
+.btn-imprimir {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.menu-hamburguer {
+    width: 30px;
+    margin-top: -5px;
+    margin-left: 30px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.menu-hamburguer .linha {
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    margin: 5px 0;
+}
+
+/* Estilo do dropdown */
+.dropdown-hamburguer {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-hamburguer .dropdown-conteudo {
+    display: none;
+    position: absolute;
+    margin-left: 50px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-hamburguer:hover .dropdown-conteudo {
+    display: block;
+}
+
+.dropdown-hamburguer .dropdown-conteudo a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-hamburguer .dropdown-conteudo a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo dos submenus */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-submenu:hover .submenu {
+    display: block;
+}
+
+/* Estilo do menu de filtro */
+.filtro-menu {
+    display: none;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    position: absolute;
+    top: 0;
+    left: 160px; /* Mudança na posição para evitar sobreposição */
+    width: 500px;
+    z-index: 1;
+}
+
+.filtro-menu input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.filtro-botoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-matutino {
+    color: #fff;
+    background-color: rgb(10, 106, 10);
+}
+
+.btn-vespertino {
+    color: #fff;
+    background-color: rgb(132, 126, 14);
+}
+
+.btn-todos {
+    color: #fff;
+    background-color: rgb(84, 153, 179);
+}
+
+
+.node-link.setor:hover~.coordenadores .coordenador .gestao-estagiarios .sub-coordenadores{
+    background-color: #ccc;
+    background: linear-gradient(to top, rgba(77, 196, 232, 0.656), rgb(84, 153, 179));
+    color: #5100ff;
+    border: 1px solid #4b4e55;
+}
+
+.node-link.setor + .funcionarios {
+    display: none; /* Certifica que setores estão inicialmente ocultos */
+}
+
+.node-link.funcionario + .sub-funcionarios {
+    display: none; /* Certifica que funcionários estão inicialmente ocultos */
+}
+
+.funcionarios .tree-node, .sub-funcionarios .tree-node {
+    min-width: 150px; /* Largura mínima */
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+.node-link.coordenador:hover + .sub-coordenadores {
+    display: block; /* Show the sub-coordenadores */
+    background: linear-gradient(to top, rgba(77, 196, 232, 0.656), rgb(84, 153, 179)); /* Blue gradient */
+    color: #5100ff; /* Change the text color */
+    border: 1px solid #4b4e55; /* Add border to highlight */
+}
+
+
+/* Apply hover effect for a more visual cue when hovering over sub-coordinators */
+.sub-coordenadores li:hover {
+    background-color: rgba(77, 196, 232, 0.2); /* Lighter blue when hovered */
+}
+
+.node-link-chefe {
+    margin-top: -160px;
+    margin-left: 55px;
+    display: flex;
+    position: absolute;
+}
+
+.tree-root-general {
+    margin-top: -15px;
+}
+
+.tree-node.gestao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px; /* Largura da linha */
+    height: 500px; /* Altura total da seção */
+    background-color: #ccc; /* Cor da linha */
+    z-index: -1; /* Fica atrás dos outros elementos */
+}
+
+
+.coordenadores {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.coordenadores-setor {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.gestao-estagiarios {
+    display: flex;
+    gap: 1px;
+    position: relative;
+    margin-top: 10px;
+}
+
+.node-link-diretor {
+    margin-left: -600px;
+}
+
+.tree-node-gestao-setor {
+    margin-left: -10px;
+}
+
+.tree-root-gestao {
+    margin-left: -600px;
+}
+
+.tree-root-diretor {
+    display: none;
+    position: relative;
+}
+
+#gestao-link:hover,
+#gestao-link:hover~.coordenadores .node-link,
+#gestao-link:hover~.coordenadores .node-link:hover,
+#gestao-link:hover~.gestao-estagiarios .node-link,
+#gestao-link:hover~.gestao-estagiarios .node-link:hover, 
+#gestao-link:hover~.sub-coordenadores .node-link,
+#gestao-link:hover~.sub-coordenadores .node-link:hover {
+    background-color: #ccc;
+    background: linear-gradient(to top, rgba(77, 196, 232, 0.656), rgb(84, 153, 179));
+    color: #5100ff;
+    border: 1px solid #4b4e55;
+}
+
+.coordenadores:hover~.gestao-estagiarios .node-link,
+.coordenadores:hover~.gestao-estagiarios .node-link:hover,
+.coordenadores:hover~.sub-coordenadores .node-link,
+.coordenadores:hover~.sub-coordenadores .node-link:hover {
+    background-color: #ccc;
+    background: linear-gradient(to top, rgba(77, 196, 232, 0.656), rgb(84, 153, 179));
+    color: #5100ff;
+    border: 1px solid #4b4e55;
+}
+
+.sub-coordenadores:hover~.gestao-estagiarios .node-link,
+.sub-coordenadores:hover~.gestao-estagiarios .node-link:hover {
+    background-color: #ccc;
+    background: linear-gradient(to top, rgba(77, 196, 232, 0.656), rgb(84, 153, 179));
+    color: #5100ff;
+    border: 1px solid #4b4e55;
+}
+
+.tree li a {
+    border: 2px solid #ccc;
+    padding: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #b7dcee;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.734), rgb(114, 212, 247));
+    transition: .5s;
+    width: 140px;
+    height: 185px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+
+.tree li a .funcionarios {
+        gap: 10px; /* Espaçamento entre os itens */
+        margin-left: 500px;
+        margin-top: 10px; /* Espaçamento superior opcional */
+        min-width: 150px; /* Largura mínima para os itens */
+        box-sizing: border-box;
+}
+
+.tree li a img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 12px !important;
+    border-radius: 30%;
+    margin: auto;
+}
+
+.setor-filtrado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Permite que o setor ocupe toda a largura disponível */
+    padding: 20px; /* Adiciona espaçamento interno ao redor do setor */
+}
+
+.setor-filtrado .funcionarios,
+.setor-filtrado .coordenadores {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os funcionários/coordenadores se movam para a próxima linha se necessário */
+    justify-content: center; /* Centraliza horizontalmente os filhos */
+    margin-top: 20px; /* Espaçamento entre o setor e seus filhos */
+    gap: 10px; /* Espaçamento entre funcionários/coordenadores */
+}
+
+.setor-filtrado .funcionarios .tree-node,
+.setor-filtrado .coordenadores .tree-node {
+    flex: 1 1 200px; /* Cada funcionário/coordenador ocupará pelo menos 200px e se ajustará conforme o espaço disponível */
+    text-align: center;
+}
+
+/* Style for the info box container */
+.info-quadro-container {
+    position: fixed; /* Make the container fixed in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* Use flexbox to center */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
+    z-index: 1000; /* Ensure it appears above other content */
+    display: none; /* Initially hidden (this will be toggled in JS) */
+}
+
+/* Style for the info box */
+.info-quadro {
+    display: flex; /* Info box should be flex */
+    background-color: #fff; /* White background */
+    border: 2px solid #007BFF; /* Blue border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    width: 500px;
+    max-height: 600px; /* Limit the height */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    font-family: Arial, sans-serif; /* Font */
+}
+
+/* Style for the title inside the box */
+.info-quadro h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333; /* Title color */
+    font-weight: 600; /* Bold title */
+}
+
+/* Style for name, position, and shift details */
+.info-quadro p {
+    font-size: 14px;
+    color: #555; /* Text color */
+    margin-bottom: 10px;
+}
+
+/* Remove margin from last paragraph */
+.info-quadro p:last-child {
+    margin-bottom: 0;
+}
+
+
+.tree li a span {
+    border: 1px solid #5f646e;
+    border-radius: 5px;
+    color: #000000;
+    padding: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-wrap: break-word;
+    height: auto;
+}
+
+.tree li a p {
+    padding-top: -5px;
+    padding-bottom: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    height: auto;
+}
+
+.tree li a:hover,
+.tree li a:hover i,
+.tree li a:hover span,
+.tree li a:hover+ul li a {
+    background-color: #ccc;
+    background: linear-gradient(to top, rgba(77, 196, 232, 0.656), rgb(84, 153, 179));
+    color: #5100ff;
+    border: 1px solid #4b4e55;
+}
+
+.tree li a:hover+ul li::after,
+.tree li a:hover+ul li::before,
+.tree li a:hover+ul::before,
+.tree li a:hover+ul ul::before {
+    border-color: #5f646e;
+}
+
+.node-link.setor:hover~.coordenadores .coordenador .gestao-estagiarios {
+    background-color: #ccc;
+    background: linear-gradient(to top, rgba(77, 196, 232, 0.656), rgb(84, 153, 179));
+    color: #5100ff;
+    border: 1px solid #4b4e55;
+}
+
+.menu {
+    position: fixed;
+    width: 100%;
+    height: 90px;
+    top: 0;
+    background: linear-gradient(to top, rgba(88, 204, 239, 0.512), rgb(114, 212, 247));
+    background-color: rgb(122, 165, 181);
+    display: flex;
+    z-index: 1000;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    margin-left: 130px;
+    padding: 0;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.tree-node-matutino .node-link,
+.tree-node-vespertino .node-link {
+    display: inline-block; /* Em vez de flex */
+    vertical-align: top;
+}
+
+
+
+.tree-node-matutino .tree-node-vespertino .parceiro-setor .tree-node-matutino .parceiro-setor .tree-node-vespertino {
+    position: relative;
+    display: none;
+    margin-top: 15px;
+    margin-right: -10px;
+}
+
+
+.tree-node-matutino .node-link {
+    background-color: #40d487; /* Azul claro para matutino */
+    border-color: #057709;
+    display: flex;
+    position: relative;
+}
+
+.tree-node-vespertino .node-link {
+    background-color: #f1c40f; /* Amarelo para vespertino */
+    border-color: #f3d912;
+    display: flex;
+    position: relative;
+}
+
+.menu-item>a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 30px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.menu-item>a:hover {
+    background-color: #5388c0;
+}
+
+.sub-coordenadores {
+    display: none; /* Ensure the sub-coordenadores are hidden initially */
+}
+
+.menu-item ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgb(28, 139, 172);
+    min-width: 200px;
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item:hover ul {
+    display: block;
+}
+
+.menu-item ul li {
+    margin: 0;
+}
+
+.menu-item ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 15px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.node-label-turno  {
+    color: black;
+    margin-top: -5px;
+}
+
+.node-label-turno  p{
+    font-size: 2px;
+}
+
+.menu-item ul li a:hover {
+    background-color: #004d80;
+}
+
+.titulo-page {
+    margin-top: 100px;
+    margin-left: 20px;
+}
+
+.titulo-page h2 {
+    color: rgb(56, 55, 55);
+    font-size: 14px;
+    font-style: italic;
+    margin-left: 5px;
+}
+
+#mostrar-tudo {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+#mostrar-tudo:hover {
+    background-color: #0056b3;
+}
+
+
+.parceiro-setor .node-link {
+    background: linear-gradient(to top, rgba(160, 153, 153, 0.734), rgb(251, 251, 251));
+    border: 1px solid #06050553; /* Cor da borda */
+    color: #000; /* Cor do texto */
+}
+
+.parceiro-setor .tree-node-matutino .node-link {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.734), rgb(114, 212, 247));
+    background-color: #40d487; /* Azul claro para matutino */
+    border-color: #057709;
+    display: flex;
+    position: relative;
+}
+
+.parceiro-setor .tree-node-vespertino .node-link {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.734), rgb(114, 212, 247));
+    background-color: #f1c40f; /* Amarelo para vespertino */
+    border-color: #f3d912;
+    display: flex;
+    position: relative;
+}
+
+.parceiro-setor .node-link:hover .node-label:hover {
+    background-color: rgb(255, 255, 255); /* Cor de fundo ao passar o mouse */
+    border-color: #0a05005e; /* Cor da borda ao passar o mouse */
+}
+
+/* Para alterar a borda envolta do nome */
+.parceiro-setor .node-label {
+    border: 2px solid rgba(0, 0, 0, 0.232); /* Exemplo de cor da borda */
+    padding: 8px;
+    border-radius: 5px;
+}

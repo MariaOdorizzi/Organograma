@@ -1,0 +1,523 @@
+/* Estilos gerais */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body .container {
+    overflow: visible;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    height: 100vh;
+    margin: 0;
+}
+
+#setor-filter {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.dropdown-menu {
+    position: relative;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.setor-separado {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    align-items: center;
+    position: relative;
+    margin-top: -200px;
+    margin-right: 200px;
+    cursor: default !important;
+}
+
+.dropbtn {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    padding: 12px 16px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    border-radius: 5px; /* Arredonda os cantos */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Transições suaves para cor e sombra */
+}
+
+.dropbtn:hover {
+    background-color: #0056b3; /* Cor de fundo azul escuro ao passar o mouse */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra ao passar o mouse */
+}
+
+.dropdown-content {
+    display: none; /* Oculta o menu inicialmente */
+    position: absolute;
+    background-color: #ffffff; /* Cor de fundo do menu */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px; /* Arredonda os cantos do menu */
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black; /* Cor do texto das opções */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd; /* Linha divisória entre opções */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+}
+
+/* Exibir o menu dropdown ao passar o mouse sobre o menu */
+.dropdown-menu:hover .dropdown-content {
+    display: block;
+}
+
+#reload-btn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+#reload-btn:hover {
+    color: #007bff; /* Altere para a cor desejada */
+}
+
+.icon {
+    display: flex;
+    font-size: 25px; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
+.container {
+    transform: scale(0.8); /* Reduz o zoom para 80% */
+    transform-origin: 0 0; /* Define o ponto de origem da transformação no canto superior esquerdo */
+    display: flex;
+    align-items: flex-start;
+    position: center;
+    width: 100%;
+    margin-left: 350px;
+    min-width: 2000px;
+    height: auto;
+}
+
+.tree #gestao-link {
+    position: relative;
+}
+
+/* Inicialmente oculta setores e funcionários */
+.funcionarios, .coordenador-container {
+    display: none; /* Oculta inicialmente */
+}
+
+/* Quando visível, exibe como flex */
+.funcionarios, .coordenador-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Setores que estão visíveis */
+.node-link.setor.active + .funcionarios {
+    display: flex;
+}
+
+.node-link.coordenador.active + .funcionarios {
+    display: flex;
+}
+
+.simplifica-logo {
+    position: absolute;
+    display: flex;
+    align-items: left;
+}
+
+.simplifica-logo img {
+    width: 100px;
+    height: auto;
+    margin-left: 20px;
+    margin-top: -15px;
+}
+
+
+.tree {
+    margin-top: 200px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.tree ul {
+    padding-top: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    white-space: nowrap;
+    justify-content: center;
+}
+
+.tree li {
+    display: inline-block;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding-top: 8px;
+    padding-right: 5px;
+    padding-left: 10px;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.tree li::before,
+.tree li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    border-top: 2px solid #ccc;
+    width: 50%;
+    height: 100px;
+    z-index: -1;
+}
+
+.tree li::before {
+    right: 50%;
+    border-right: 1px solid #ccc;
+    border-radius: 0 5px 0 0;
+}
+
+.tree li::after {
+    left: 50%;
+    border-left: 1px solid #ccc;
+    border-radius: 5px 0 0 0;
+}
+
+.tree li:only-child::before,
+.tree li:only-child::after {
+    display: none;
+}
+
+.tree li:first-child::before {
+    border: 0;
+}
+
+.tree li:last-child::after {
+    border: 0;
+}
+
+.tree ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 2px solid #ccc;
+    width: 0;
+    height: 28px;
+    z-index: -1;
+}
+
+.node-link.setor:hover~.coordenadores .coordenador .gestao-estagiarios {
+    background: #c8e4f8;
+    color: #000;
+    border: 1px solid #94a0b4;
+}
+
+.node-link.setor + .funcionarios {
+    display: none; /* Certifica que setores estão inicialmente ocultos */
+}
+
+.node-link.funcionario + .sub-funcionarios {
+    display: none; /* Certifica que funcionários estão inicialmente ocultos */
+}
+
+ul.funcionarios, ul.coordenadores {
+    display: none;
+}
+
+/* Garantir que a grid se comporte como esperado */
+.funcionarios, .sub-funcionarios {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas de igual tamanho */
+    gap: 10px; /* Espaçamento entre os itens */
+    width: 100%; /* Ocupa toda a largura disponível */
+}
+
+.funcionarios .tree-node, .sub-funcionarios .tree-node {
+    min-width: 150px; /* Largura mínima */
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+.tree-node {
+    position: relative;
+    display: flex;
+    margin-top: 10px;
+    margin-right: -10px;
+}
+
+.node-link-chefe {
+    margin-top: -160px;
+    margin-left: 55px;
+    display: flex;
+    position: absolute;
+}
+
+.tree-root-general {
+    margin-top: -15px;
+}
+
+.tree-node.gestao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 10px; /* Largura da linha */
+    height: 500px; /* Altura total da seção */
+    background-color: #ccc; /* Cor da linha */
+    z-index: -1; /* Fica atrás dos outros elementos */
+}
+
+/* Garantir que a grid se comporte como esperado */
+.funcionarios, .sub-funcionarios {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas de igual tamanho */
+    gap: 10px; /* Espaçamento entre os itens */
+    width: 100%; /* Ocupa toda a largura disponível */
+}
+
+.funcionarios .tree-node, .sub-funcionários .tree-node {
+    min-width: 150px; /* Largura mínima */
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+.coordenadores {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+}
+
+.coordenadores-setor {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+}
+
+.gestao-estagiarios {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    margin-top: 10px;
+}
+
+.node-link-diretor {
+    margin-left: -600px;
+}
+
+.tree-node-gestao-setor {
+    margin-left: 10px;
+}
+
+.tree-root-gestao {
+    margin-left: 100px;
+    height: 300px;
+}
+
+.tree-root {
+    height: 300px;
+}
+
+.tree-root-diretor {
+    display: none;
+    position: relative;
+}
+
+.tree li a:hover,
+.tree li a:hover i,
+.tree li a:hover span,
+.tree li a:hover+ul li a {
+    background-color: #ccc;
+    background: linear-gradient(to top, rgba(77, 196, 232, 0.656), rgb(84, 153, 179));
+    color: #5100ff;
+    border: 1px solid #4b4e55;
+}
+
+
+#gestao-link:hover,
+#gestao-link:hover~.coordenadores .node-link,
+#gestao-link:hover~.coordenadores .node-link:hover,
+#gestao-link:hover~.gestao-estagiarios .node-link,
+#gestao-link:hover~.gestao-estagiarios .node-link:hover {
+    background: linear-gradient(to top, rgba(77, 196, 232, 0.656), rgb(84, 153, 179));
+    background-color: #ccc;
+    color: #000;
+    border: 1px solid #94a0b4;
+}
+
+.coordenadores:hover~.gestao-estagiarios .node-link,
+.coordenadores:hover~.gestao-estagiarios .node-link:hover {
+    background: #c8e4f8;
+    color: #000;
+    border: 1px solid #94a0b4;
+}
+
+.tree li a {
+    border: 2px solid #ccc;
+    padding: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #b7dcee;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.734), rgb(114, 212, 247));
+    transition: .5s;
+    width: 200px;
+    height: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.tree li a .funcionarios {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas de tamanho igual */
+        gap: 10px; /* Espaçamento entre os itens */
+        margin-left: 500px;
+        margin-top: 10px; /* Espaçamento superior opcional */
+        min-width: 150px; /* Largura mínima para os itens */
+        box-sizing: border-box;
+}
+
+.tree li a img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 12px !important;
+    border-radius: 30%;
+    margin: auto;
+}
+
+
+.tree-root-isolated {
+    margin-top: 10px; /* Espaçamento entre a árvore e o setor isolado */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tree-root-isolated::before {
+    content: '';
+    position: absolute;
+    top: -100px; /* Posiciona a linha acima do setor isolado */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px; /* Largura da linha */
+    height: 100px; /* Altura da linha que conecta a árvore ao setor isolado */
+    background-color: #ccc; /* Cor da linha */
+    z-index: -1; /* Fica atrás dos outros elementos */
+}
+
+/* Elemento do setor isolado */
+.tree-root-isolated a {
+    border: 2px solid #ccc;
+    padding: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #b7dcee;
+    background: linear-gradient(to top, rgba(79, 185, 218, 0.512), rgb(55, 157, 194));
+    transition: .5s;
+    width: 140px;
+    height: 165px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin-top: 50px; /* Ajusta a posição do setor */
+}
+
+/* Linha horizontal de conexão */
+.tree-connection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.tree-line {
+    width: 100px; /* Ajuste a largura conforme necessário */
+    height: 2px;
+    background-color: #ccc;
+    margin: 0 10px; /* Espaçamento entre as linhas */
+    position: relative;
+}
+
+.tree-line:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60px; /* Ajuste a altura da linha vertical */
+    background-color: #ccc
+}
+
+/* Ajustes adicionais para alinhar as linhas com a estrutura principal */
+.tree-root-isolated .isolated-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+
+.line {
+    position: absolute;
+    background-color: #ccc;
+    height: 2px;
+    width: 814px;
+    top: -5px;
+    left: -190px;
+}
+
+.line-second {
+    position: absolute;
+    background-color: black;
+    height: 2px;
+    width: 304px;
+    top: -5px;
+    left: -194px;
+}
+
+.line-third {
+    position: absolute;
+    background-color: black;
+    height: 30px;
+    width: 2px;
+    top: -5px;
+    left: 108px;
+}
+
+.line-fourth {
+    position: absolute;
+    background-color: black;
+    height:42px;
+    width: 2px;
+    top: -45px;
+    left: -196px;
+}
