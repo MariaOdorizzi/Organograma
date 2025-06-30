@@ -25,9 +25,13 @@ Este projeto implementa um sistema completo para gerenciar e visualizar a estrut
 
 ## Estrutura do Projeto
 organograma/
+
 ├── backend/
+
 │ ├── database/
+
 │ │ └── person.db # Banco de dados SQLite
+
 │ ├── scripts/
 │ │ └── relation.py # Script principal de processamento
 │
