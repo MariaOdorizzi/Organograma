@@ -30,7 +30,7 @@ Este projeto implementa um sistema completo para gerenciar e visualizar a estrut
    - Pipenv (ou pip) para gerenciamento de dependências
 
 2. **Configuração**:
-   - ```bash
+   - bash
    - git clone [repositorio]
    - cd organograma/backend
    - pip install -r requirements.txt  # ou pipenv install
